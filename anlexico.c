@@ -49,7 +49,7 @@ int main(int argc,char* args[])
 		}
 		fclose(archivo);
 	}else{
-		printf("Debe pasar como parametro el path al archivo fuente.\n");
+		printf("Debe pasar como parametro la ruta al archivo fuente.\n");
 		exit(1);
 	}
 
@@ -377,7 +377,7 @@ void sigLex()
 				/*********** **************************************/
 				//se llego al fin del archivo
 				if (c==EOF)
-					error("Se llego al fin de archivo sin finalizar un comentario");
+					error("Se llego al fin de archivo");
 				continue;
 			}
 			/*********** **************************************/
@@ -424,7 +424,7 @@ void sigLex()
 				}
 				else if(c==EOF)
 				{
-					error("Se llego al fin de archivo sin finalizar un literal");
+					error("Se llego al fin de archivo");
 				}
 				else{
 					id[i]=c;
@@ -441,13 +441,6 @@ void sigLex()
 			if (t.pe->compLex==-1)
 			{
 				strcpy(e.lexema,id);
-				if (strlen(id)==3 || strcmp(id,"''''")==0)
-					e.compLex=CAR;
-				else
-					e.compLex=LITERAL;
-				insertar(e);
-				t.pe=buscar(id);
-				t.compLex=e.compLex;
 			}
 			break;
 		}
@@ -469,7 +462,7 @@ void sigLex()
 			}
 			//se llevo al final del  archivo
 			if (c==EOF)
-				error("Se llego al fin de archivo sin finalizar un comentario");
+				error("Se llego al fin de archivo");
 		}
 		else if (c!=EOF)
 		{
